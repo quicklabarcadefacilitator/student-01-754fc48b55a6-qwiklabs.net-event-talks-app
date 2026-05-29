@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-filter {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#categorySearch {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.schedule h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.talk-card {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    transition: transform 0.2s;
+}
+
+.talk-card:hover {
+    transform: translateY(-5px);
+}
+
+.talk-card h3 {
+    color: #0056b3;
+    margin-top: 0;
+}
+
+.talk-card p {
+    margin: 5px 0;
+}
+
+.talk-card .speakers span {
+    font-weight: bold;
+}
+
+.talk-card .categories {
+    font-style: italic;
+    color: #666;
+}
+
+.talk-card .time {
+    font-weight: bold;
+    color: #555;
+}
+
+.lunch-break {
+    background-color: #e0f7fa;
+    border: 1px solid #b2ebf2;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.lunch-break h3 {
+    color: #00796b;
+    margin: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #333;
+    color: #fff;
+}

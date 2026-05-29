@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Talks Event</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-filter {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#categorySearch {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.schedule h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.talk-card {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    transition: transform 0.2s;
+}
+
+.talk-card:hover {
+    transform: translateY(-5px);
+}
+
+.talk-card h3 {
+    color: #0056b3;
+    margin-top: 0;
+}
+
+.talk-card p {
+    margin: 5px 0;
+}
+
+.talk-card .speakers span {
+    font-weight: bold;
+}
+
+.talk-card .categories {
+    font-style: italic;
+    color: #666;
+}
+
+.talk-card .time {
+    font-weight: bold;
+    color: #555;
+}
+
+.lunch-break {
+    background-color: #e0f7fa;
+    border: 1px solid #b2ebf2;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.lunch-break h3 {
+    color: #00796b;
+    margin: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #333;
+    color: #fff;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>1-Day Tech Talks Event</h1>
+        <p>A full day of insightful technical discussions.</p>
+    </header>
+
+    <main>
+        <section class="search-filter">
+            <input type="text" id="categorySearch" placeholder="Search by category...">
+        </section>
+
+        <section class="schedule">
+            <h2>Event Schedule</h2>
+            <div id="talks-container">
+                <!-- Talks will be dynamically loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tech Talks Event</p>
+    </footer>
+
+    <script>
+        
+    const talks = [
+  {
+    "title": "Introduction to WebAssembly",
+    "speakers": [
+      "Dr. Alex W. (Lead Engineer, WebTech Solutions)"
+    ],
+    "category": [
+      "Web Development",
+      "Performance"
+    ],
+    "duration": 60,
+    "description": "A deep dive into WebAssembly fundamentals, use cases, and how it's revolutionizing web performance."
+  },
+  {
+    "title": "Machine Learning with TensorFlow.js",
+    "speakers": [
+      "Dr. Sarah L. (AI Researcher)",
+      "Prof. David M. (University of Tech)"
+    ],
+    "category": [
+      "Machine Learning",
+      "JavaScript",
+      "AI"
+    ],
+    "duration": 60,
+    "description": "Explore how to build and deploy machine learning models directly in the browser using TensorFlow.js."
+  },
+  {
+    "title": "Advanced CSS Grid Layouts",
+    "speakers": [
+      "Ms. Emily R. (UI/UX Designer)"
+    ],
+    "category": [
+      "Frontend",
+      "CSS",
+      "Design"
+    ],
+    "duration": 60,
+    "description": "Master complex responsive layouts with advanced techniques in CSS Grid, including subgrid and intrinsic sizing."
+  },
+  {
+    "title": "State Management in React with XState",
+    "speakers": [
+      "Mr. John P. (Software Architect)"
+    ],
+    "category": [
+      "React",
+      "State Management"
+    ],
+    "duration": 60,
+    "description": "Understand the benefits of finite state machines for robust state management in React applications using XState."
+  },
+  {
+    "title": "Serverless Functions with Node.js and GCP",
+    "speakers": [
+      "Ms. Jessica H. (Cloud Solutions Engineer)"
+    ],
+    "category": [
+      "Cloud",
+      "Backend",
+      "Serverless"
+    ],
+    "duration": 60,
+    "description": "Learn to build and deploy scalable serverless functions using Node.js on Google Cloud Platform."
+  },
+  {
+    "title": "Containerization with Docker and Kubernetes",
+    "speakers": [
+      "Mr. Michael B. (DevOps Specialist)"
+    ],
+    "category": [
+      "DevOps",
+      "Containers",
+      "Cloud"
+    ],
+    "duration": 60,
+    "description": "An essential guide to deploying and managing applications at scale using Docker and Kubernetes."
+  }
+];
+    document.addEventListener('DOMContentLoaded', () => {
+    // This data will be injected by the Node.js script
+    const talks = [
+        // TALKS_DATA_HERE
+    ];
+
+    const talksContainer = document.getElementById('talks-container');
+    const categorySearch = document.getElementById('categorySearch');
+
+    function renderSchedule(filteredTalks) {
+        talksContainer.innerHTML = ''; // Clear existing talks
+
+        let currentTime = new Date();
+        currentTime.setHours(10, 0, 0, 0); // Event starts at 10:00 AM
+
+        filteredTalks.forEach((talk, index) => {
+            // Add talk card
+            const talkCard = document.createElement('div');
+            talkCard.classList.add('talk-card');
+
+            const startTime = new Date(currentTime);
+            const endTime = new Date(startTime.getTime() + talk.duration * 60 * 1000);
+
+            talkCard.innerHTML = `
+                <p class="time">${startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                <h3>${talk.title}</h3>
+                <p class="speakers">Speakers: <span>${talk.speakers.join(', ')}</span></p>
+                <p class="categories">Categories: ${talk.category.join(', ')}</p>
+                <p>${talk.description}</p>
+            `;
+            talksContainer.appendChild(talkCard);
+
+            currentTime = new Date(endTime.getTime());
+
+            // Add 10 minute transition after each talk, except the last one before lunch
+            if (index < filteredTalks.length - 1) {
+                currentTime = new Date(currentTime.getTime() + 10 * 60 * 1000); // Add 10 minutes transition
+            }
+
+            // Insert lunch break after the third talk
+            if (index === 2) {
+                const lunchBreak = document.createElement('div');
+                lunchBreak.classList.add('lunch-break');
+                const lunchStartTime = new Date(currentTime);
+                const lunchEndTime = new Date(lunchStartTime.getTime() + 60 * 60 * 1000); // 1 hour lunch
+                lunchBreak.innerHTML = `
+                    <h3>Lunch Break</h3>
+                    <p>${lunchStartTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${lunchEndTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                `;
+                talksContainer.appendChild(lunchBreak);
+                currentTime = new Date(lunchEndTime.getTime());
+                currentTime = new Date(currentTime.getTime() + 10 * 60 * 1000); // Add 10 minutes after lunch
+            }
+        });
+    }
+
+    function filterTalks() {
+        const searchTerm = categorySearch.value.toLowerCase();
+        const filtered = talks.filter(talk =>
+            talk.category.some(cat => cat.toLowerCase().includes(searchTerm))
+        );
+        renderSchedule(filtered);
+    }
+
+    categorySearch.addEventListener('keyup', filterTalks);
+
+    // Initial render
+    renderSchedule(talks);
+});
+
+
+    </script>
+</body>
+</html>
